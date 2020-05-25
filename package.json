@@ -1,13 +1,12 @@
 {
     "name": "dispatcher",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Super basic event dispatcher for objects",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
-        "test": "mocha index.ts --require ts-node/register test/**/*.ts",
-        "test-js": "mocha --reporter spec"
+        "test": "NODE_NO_WARNINGS=1 NODE_TLS_REJECT_UNAUTHORIZED=0 mocha index.ts --require ts-node/register test/**/*.spec.ts"
     },
     "author": "Polymer Mallard LLC",
     "license": "ISC",
