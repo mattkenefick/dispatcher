@@ -4,13 +4,16 @@
     "description": "Super basic event dispatcher for objects",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "type": "module",
     "scripts": {
         "build": "tsc",
-        "test": "NODE_NO_WARNINGS=1 NODE_TLS_REJECT_UNAUTHORIZED=0 mocha index.ts --require ts-node/register test/**/*.spec.ts"
+        "test": "ts-mocha -p tsconfig.json test/**/*.spec.ts"
     },
     "author": "Polymer Mallard LLC",
     "license": "ISC",
-    "dependencies": {},
+    "dependencies": {
+        "@types/node": "^14.0.6"
+    },
     "devDependencies": {
         "@types/chai": "^4.2.11",
         "@types/mocha": "^7.0.2",
