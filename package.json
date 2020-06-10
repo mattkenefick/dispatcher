@@ -1,14 +1,28 @@
 {
     "name": "dispatcher",
-    "version": "0.1.5",
+    "version": "0.1.7",
     "description": "Super basic event dispatcher for objects",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
     "type": "module",
     "scripts": {
         "build": "tsc",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+        "lint": "tslint -p tsconfig.json",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm test && npm run lint",
+        "preversion": "npm run lint",
+        "version": "npm run format && git add -A src",
+        "postversion": "git push && git push --tags",
         "test": "ts-mocha -p tsconfig.json test/**/*.spec.ts"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mattkenefick/dispatcher.git"
+    },
+    "files": [
+        "lib/**/*"
+    ],
     "author": "Polymer Mallard LLC",
     "license": "ISC",
     "dependencies": {
