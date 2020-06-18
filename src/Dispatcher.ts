@@ -27,8 +27,20 @@ export default class Dispatcher
     /**
      * Constructor
      */
-    constructor() {
+    constructor()
+    {
         this.events = {};
+    }
+
+    /**
+     * Alias for dispatch
+     *
+     * @param {string} eventName
+     * @param {any = {}} data
+     */
+    trigger(eventName: string, data: any = {})
+    {
+        return this.dispatch(eventName, data);
     }
 
     /**
@@ -37,7 +49,8 @@ export default class Dispatcher
      * @param {string} eventName [description]
      * @param {any =         {}}        data [description]
      */
-    dispatch(eventName: string, data: any = {}) {
+    dispatch(eventName: string, data: any = {})
+    {
         const event = this.events[eventName];
 
         if (event) {
@@ -57,7 +70,8 @@ export default class Dispatcher
      * @param {string}  eventName [description]
      * @param {any) =>        void}        callback [description]
      */
-    on(eventName: string, callback: (data?: any) => void) {
+    on(eventName: string, callback: (data?: any) => void)
+    {
         let event = this.events[eventName];
 
         if (!event) {
@@ -74,7 +88,8 @@ export default class Dispatcher
      * @param {string}  eventName [description]
      * @param {any) =>        void}        callback [description]
      */
-    off(eventName: string, callback: (data?: any) => void) {
+    off(eventName: string, callback: (data?: any) => void)
+    {
         const event = this.events[eventName];
 
         if (event && event.callbacks.indexOf(callback) > -1) {
