@@ -30,6 +30,13 @@ export default class DispatcherEvent
     }
 
     /**
+     * Remove all callbacks
+     */
+    clearCallbacks() {
+        this.callbacks = {};
+    }
+
+    /**
      * Register Callback
      *
      * @param {any) => void} callback [description]

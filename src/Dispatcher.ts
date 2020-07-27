@@ -15,16 +15,6 @@ export default class Dispatcher
     events: any;
 
     /**
-     * Test
-     *
-     * @return {string} [description]
-     */
-    public static test(): string
-    {
-        return 'foo';
-    }
-
-    /**
      * Constructor
      */
     constructor()
@@ -88,12 +78,20 @@ export default class Dispatcher
      * @param {string}  eventName [description]
      * @param {any) =>        void}        callback [description]
      */
-    off(eventName: string, callback: (data?: any) => void)
+    off(eventName: string, callback: any = null)
     {
         const event = this.events[eventName];
 
-        if (event && event.callbacks.indexOf(callback) > -1) {
+        // Clear all
+        if (event && !callback) {
+            event.clearCallbacks();
+            delete this.events[eventName];
+        }
+
+        // Remove specific
+        else if (event && event.callbacks.indexOf(callback) > -1) {
             event.unregisterCallback(callback);
+
             if (event.callbacks.length === 0) {
                 delete this.events[eventName];
             }
