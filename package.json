@@ -1,6 +1,6 @@
 {
     "name": "dispatcher",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "Super basic event dispatcher for objects",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
