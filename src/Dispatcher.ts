@@ -58,7 +58,7 @@ export default class Dispatcher
      * On
      *
      * @param {string}  eventName [description]
-     * @param {any) =>        void}        callback [description]
+     * @param {any) => void}  callback [description]
      */
     on(eventName: string, callback: (data?: any) => void)
     {
