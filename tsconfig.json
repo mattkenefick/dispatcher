@@ -1,14 +1,30 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "module": "system",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "outFile": "lib/tsc.js",
-        "skipLibCheck": true,
-        "sourceMap": true
+    "atom": {
+        "rewriteTsconfig": false
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+    "compileOnSave": true,
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "declaration": true,
+        "module": "system",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "outDir": "dist/js",
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "target": "es6"
+    },
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ],
+    "include": [
+        "src/**/*"
+    ],
+    "scripts": {
+        "prepublish": "tsc"
+    }
 }
