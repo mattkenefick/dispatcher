@@ -1,9 +1,9 @@
 {
     "name": "dispatcher",
-    "version": "0.2.6",
+    "version": "0.3.0",
     "description": "Super basic event dispatcher for objects",
-    "main": "dist/js/index.js",
-    "types": "dist/js/index.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "type": "module",
     "scripts": {
         "build": "tsc --skipLibCheck",
