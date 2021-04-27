@@ -10,12 +10,13 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": true,
-        "outDir": "dist/js",
+        "outDir": "dist",
         "preserveConstEnums": true,
         "removeComments": true,
         "skipLibCheck": true,
+        "strict": true,
         "sourceMap": true,
-        "target": "es6"
+        "target": "es2020"
     },
     "exclude": [
         "node_modules",
