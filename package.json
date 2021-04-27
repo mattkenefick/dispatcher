@@ -1,10 +1,9 @@
 {
     "name": "dispatcher",
-    "version": "0.2.6",
+    "version": "0.4.0",
     "description": "Super basic event dispatcher for objects",
     "main": "dist/js/index.js",
     "types": "dist/js/index.d.ts",
-    "type": "module",
     "scripts": {
         "build": "tsc --skipLibCheck",
         "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
@@ -13,7 +12,7 @@
         "prepare": "npm run build",
         "prepublishOnly": "npm test && npm run lint",
         "preversion": "npm run lint",
-        "test": "ts-mocha -p tsconfig.json test/**/*.spec.ts",
+        "test": "ts-mocha -p tsconfig.testing.json test/**/*.spec.ts",
         "version": "npm run format && git add -A src"
     },
     "repository": {
@@ -34,6 +33,7 @@
         "chai": "^4.2.0",
         "mocha": "^7.1.2",
         "ts-node": "^8.10.1",
+        "tslib": "^2.2.0",
         "typescript": "^3.8.3"
     }
 }
