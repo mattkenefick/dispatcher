@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const DispatcherEvent_1 = require("./DispatcherEvent");
-class Dispatcher {
+import DispatcherEvent from './DispatcherEvent';
+export default class Dispatcher {
     constructor() {
         this.events = {};
     }
@@ -23,18 +21,18 @@ class Dispatcher {
     on(eventName, callback) {
         let event = this.events[eventName];
         if (!event) {
-            event = new DispatcherEvent_1.default(eventName);
+            event = new DispatcherEvent(eventName);
             this.events[eventName] = event;
         }
         event.registerCallback(callback);
     }
-    off(eventName, callback = null) {
+    off(eventName, callback) {
         const event = this.events[eventName];
         if (event && !callback) {
             event.clearCallbacks();
             delete this.events[eventName];
         }
-        else if (event && event.callbacks.indexOf(callback) > -1) {
+        else if (event && callback && event.callbacks.indexOf(callback) > -1) {
             event.unregisterCallback(callback);
             if (event.callbacks.length === 0) {
                 delete this.events[eventName];
@@ -42,5 +40,4 @@ class Dispatcher {
         }
     }
 }
-exports.default = Dispatcher;
 //# sourceMappingURL=Dispatcher.js.map

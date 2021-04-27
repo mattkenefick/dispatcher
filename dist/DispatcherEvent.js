@@ -1,12 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class DispatcherEvent {
+export default class DispatcherEvent {
     constructor(eventName, data = {}) {
-        this.eventName = eventName;
         this.callbacks = [];
+        this.data = data;
+        this.eventName = eventName;
     }
     clearCallbacks() {
-        this.callbacks = {};
+        this.callbacks = [];
     }
     registerCallback(callback) {
         this.callbacks.push(callback);
@@ -20,9 +19,8 @@ class DispatcherEvent {
     fire(data) {
         const callbacks = this.callbacks.slice(0);
         callbacks.forEach((callback) => {
-            callback(data);
+            callback(Object.assign({}, this.data, data));
         });
     }
 }
-exports.default = DispatcherEvent;
 //# sourceMappingURL=DispatcherEvent.js.map

@@ -1,9 +1,18 @@
-
 /**
  *
  */
-export default class DispatcherEvent
-{
+export default class DispatcherEvent {
+    /**
+     * Callbacks
+     *
+     * @type {any}
+     */
+    callbacks: ((data?: Record<string, unknown>) => void)[];
+
+    /**
+     * Data passed come from constructor
+     */
+    data: Record<string, unknown>;
 
     /**
      * Event Name
@@ -13,27 +22,21 @@ export default class DispatcherEvent
     eventName: string;
 
     /**
-     * Callbacks
-     *
-     * @type {any}
-     */
-    callbacks: any;
-
-    /**
      * Constructor
      */
-    constructor(eventName: string, data: any = {}) {
+    constructor(eventName: string, data: Record<string, unknown> = {}) {
         // super(eventName, data);
 
-        this.eventName = eventName;
         this.callbacks = [];
+        this.data = data;
+        this.eventName = eventName;
     }
 
     /**
      * Remove all callbacks
      */
-    clearCallbacks() {
-        this.callbacks = {};
+    clearCallbacks(): void {
+        this.callbacks = [];
     }
 
     /**
@@ -41,7 +44,7 @@ export default class DispatcherEvent
      *
      * @param {any) => void} callback [description]
      */
-    registerCallback(callback: (data?: any) => void) {
+    registerCallback(callback: (data?: Record<string, unknown>) => void): void {
         this.callbacks.push(callback);
     }
 
@@ -50,7 +53,7 @@ export default class DispatcherEvent
      *
      * @param {any) => void} callback [description]
      */
-    unregisterCallback(callback: (data?: any) => void) {
+    unregisterCallback(callback: (data?: Record<string, unknown>) => void): void {
         const index = this.callbacks.indexOf(callback);
 
         if (index > -1) {
@@ -63,11 +66,11 @@ export default class DispatcherEvent
      *
      * @param {any} data [description]
      */
-    fire(data: any) {
+    fire(data: Record<string, unknown>): void {
         const callbacks = this.callbacks.slice(0);
-        callbacks.forEach((callback: (data?: any) => void) => {
-            callback(data);
+
+        callbacks.forEach((callback: (data?: Record<string, unknown>) => void) => {
+            callback(Object.assign({}, this.data, data));
         });
     }
-
 }

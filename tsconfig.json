@@ -4,14 +4,25 @@
     },
     "compileOnSave": true,
     "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "declaration": true,
-        "module": "commonjs",
+        "isolatedModules": false,
+        "module": "esnext",
         "moduleResolution": "node",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
         "outDir": "dist",
+        "paths": {
+            "*": ["types/*"],
+            "@/*": ["src/*"]
+        },
         "preserveConstEnums": true,
+        "pretty": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
         "removeComments": true,
         "skipLibCheck": true,
         "strict": true,
@@ -20,7 +31,8 @@
     },
     "exclude": [
         "node_modules",
-        "**/*.spec.ts"
+        "**/*.spec.ts",
+        "**/__tests__/*"
     ],
     "include": [
         "src/**/*"

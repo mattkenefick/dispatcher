@@ -1,9 +1,10 @@
 export default class DispatcherEvent {
+    callbacks: ((data?: Record<string, unknown>) => void)[];
+    data: Record<string, unknown>;
     eventName: string;
-    callbacks: any;
-    constructor(eventName: string, data?: any);
+    constructor(eventName: string, data?: Record<string, unknown>);
     clearCallbacks(): void;
-    registerCallback(callback: (data?: any) => void): void;
-    unregisterCallback(callback: (data?: any) => void): void;
-    fire(data: any): void;
+    registerCallback(callback: (data?: Record<string, unknown>) => void): void;
+    unregisterCallback(callback: (data?: Record<string, unknown>) => void): void;
+    fire(data: Record<string, unknown>): void;
 }

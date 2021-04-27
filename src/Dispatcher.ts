@@ -1,7 +1,7 @@
-import DispatcherEvent from "./DispatcherEvent";
+import DispatcherEvent from './DispatcherEvent';
 
 /**
- *
+ * Dispatcher
  */
 export default class Dispatcher {
     /**
@@ -9,7 +9,7 @@ export default class Dispatcher {
      *
      * @type {any}
      */
-    events: any;
+    events: Record<string, DispatcherEvent>;
 
     /**
      * Constructor
@@ -24,7 +24,7 @@ export default class Dispatcher {
      * @param {string} eventName
      * @param {any = {}} data
      */
-    trigger(eventName: string, data: any = {}) {
+    trigger(eventName: string, data: Record<string, unknown> = {}):void {
         return this.dispatch(eventName, data);
     }
 
@@ -34,8 +34,8 @@ export default class Dispatcher {
      * @param {string} eventName [description]
      * @param {any =         {}}        data [description]
      */
-    dispatch(eventName: string, data: any = {}) {
-        const event = this.events[eventName];
+    dispatch(eventName: string, data: Record<string, unknown> = {}): void {
+        const event: DispatcherEvent = this.events[eventName] as DispatcherEvent;
 
         if (event) {
             event.fire({
@@ -54,7 +54,7 @@ export default class Dispatcher {
      * @param {string}  eventName [description]
      * @param {any) => void}  callback [description]
      */
-    on(eventName: string, callback: (data?: any) => void) {
+    on(eventName: string, callback: (data?: Record<string, unknown>) => void): void {
         let event = this.events[eventName];
 
         if (!event) {
@@ -71,8 +71,8 @@ export default class Dispatcher {
      * @param {string}  eventName [description]
      * @param {any) =>        void}        callback [description]
      */
-    off(eventName: string, callback: any = null) {
-        const event = this.events[eventName];
+    off(eventName: string, callback?: () => void): void {
+        const event: DispatcherEvent = this.events[eventName] as DispatcherEvent;
 
         // Clear all
         if (event && !callback) {
@@ -81,7 +81,7 @@ export default class Dispatcher {
         }
 
         // Remove specific
-        else if (event && event.callbacks.indexOf(callback) > -1) {
+        else if (event && callback && event.callbacks.indexOf(callback) > -1) {
             event.unregisterCallback(callback);
 
             if (event.callbacks.length === 0) {
