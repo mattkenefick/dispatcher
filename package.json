@@ -2,8 +2,8 @@
     "name": "dispatcher",
     "version": "0.4.5",
     "description": "Super basic event dispatcher for objects",
-    "main": "dist/js/index.js",
-    "types": "dist/js/index.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc --skipLibCheck",
         "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
